@@ -24,7 +24,10 @@ class ManagementSystem:
         """
         Initialize a ManagementSystem object.
         """
-        pass
+        #pass
+        self.employees = []
+        self.projects = []
+        self.tasks = []
 
     def add_employee(self, employee):
         """
@@ -33,7 +36,8 @@ class ManagementSystem:
         Args:
             employee (Employee): The employee to be added.
         """
-        pass
+        #pass
+        self.employees.append(employee)
 
     def remove_employee(self, emp_id):
         """
@@ -42,7 +46,12 @@ class ManagementSystem:
         Args:
             emp_id (str): The ID of the employee to be removed.
         """
-        pass
+        #pass
+        # or try  range(len(self.employees)):
+        for x in self.employees:
+            if x.emp_id == emp_id:
+                self.employees.remove(x)
+
 
     def add_project(self, project):
         """
@@ -51,7 +60,8 @@ class ManagementSystem:
         Args:
             project (Project): The project to be added.
         """
-        pass
+        #pass
+        self.projects.append(project)
 
     def add_task(self, task):
         """
@@ -60,7 +70,8 @@ class ManagementSystem:
         Args:
             task (Task): The task to be added.
         """
-        pass
+        #pass
+        self.tasks.append(task)
 
     def assign_employee_to_project(self, emp_id, project_id):
         """
@@ -73,4 +84,18 @@ class ManagementSystem:
         Raises:
             ValueError: If employee or project is not found.
         """
-        pass
+        #pass
+        
+        
+        projectSuccess = [project for project in self.projects if project.project_id == project_id]
+        if projectSuccess:
+            employeeSuccess = [employee for employee in self.employees if employee.emp_id == emp_id][0]
+
+            if employeeSuccess:
+                projectSuccess[0].assign_employee(employeeSuccess)
+
+            else:
+                raise ValueError("Employee not found")
+
+        else:
+            raise ValueError("Project is not found")
